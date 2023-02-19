@@ -159,3 +159,16 @@ select {
     text-decoration: none; 
     text-align: center; 
 }
+a:hover{
+    background-color: rgba(137, 54, 54, 0.496);
+}
+
+@media only screen and (max-width: 960px){
+    .cancelButton {
+        margin-left: 0px;
+    }
+    .form {
+        width: 85%;
+        padding: 44px 20px;
+    }
+}
