@@ -1,82 +1,87 @@
 class EmployeePayrollData{
-    constructor(name,gender,department,salary,startDate,note){
-        this.name=name;
-        this.gender=gender;
-        this.department=department;
-        this.salary=salary;
-        this.startDate=startDate;
-        this.note=note;
+    id;
+    salary;
+    gender;
+    startDate;
+
+    constructor(...params){
+        this.id = params[0];
+        this.name = params[1];
+        this.salary = params[2];
+        this.gender = params[3];
+        this.startDate = params[4];
     }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(id) {
+        this._id = id;
+    }
+
+    get name() { return this._name;}
     set name(name){
-        this._name=name;
-    }
-    get name(){
-        return this._name;
-    }
-
-    set gender(gender){
-        this._gender=gender;
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$');
+        if(nameRegex.test(name))
+        this._name = name;
+        else throw 'name is incorrect'
     }
 
-    get gender(){
-        return this._gender;
+    get profilePic() {
+        return this._profilePic
+    }
+    set profilePic(profilePic) {
+        this._profilePic = profilePic
     }
 
-    set department(department){
-        this._department=department;
+    get gender() {
+        return this._gender
+    }
+    set gender(gender) {
+        this._gender = gender
     }
 
-    get department(){
-        return this._department;
+    get department() {
+        return this._department
+    }
+    set department(department) {
+        this._department = department
     }
 
-    set salary(salary){
-        this._salary=salary;
+    get salary() {
+        return this._salary
+    }
+    set salary(salary) {
+        this._salary = salary
     }
 
-    get salary(){
-        return this._salary;
+    get note() {
+        return this._note
+    }
+    set note(note) {
+        this._note = note
     }
 
-    set startDate(startDate){
-        this._startDate=startDate;
+    get startDate() {
+        return this._startDate
+    }
+    set startDate(startDate) {
+        this._startDate = startDate
     }
 
-    get startDate(){
-        return this._startDate;
+    //method
+    toString() {
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }
+        const empDate = !this.startDate ? "undefined" :
+            this.startDate.toLocaleDateString("en-US", options);
+
+        return "id =" + this.id + ",name = " + this.name +
+            " ,gender = " + this.gender + " ,profilePic = " + this.profilePic + ",salary = " + this.salary +
+            " ,department = " + this.department + " ,startDate = " + empDate + " ,notes = " + this.note;
     }
-
-    set note(note){
-        this._note=note;
-    }
-
-    get note(){
-        return this._note;
-    }
-
-    toString(){
-        return(
-            "{"
-            +" Name = "+this.name
-            +", Gender = "+this.gender
-            +", Department = "+this.department
-            +", Salary = "+this.salary
-            +", Start Date = "+this.startDate
-            +", Notes = "+this.note
-            +" }"
-        )
-    }
-
-}
-
-function save(){
-    let employeePayrollData = new EmployeePayrollData(
-        document.querySelector('#name').value,
-        document.querySelector('input[name="gender"]:checked').value,
-        document.querySelector('input[type="checkbox"]:checked').value,
-        document.querySelector('#salary').value,
-        document.getElementById("start-date").value,
-        document.querySelector('#notes').value
-    );
-    alert('form submitted \n'+employeePayrollData);
 }
